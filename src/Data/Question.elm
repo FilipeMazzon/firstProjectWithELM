@@ -1,8 +1,9 @@
-module Data.Question exposing (Questions)
+module Data.Question exposing (Question)
 
-type alias Questions =
+type alias Question =
     {
-        question: String
-        ,correct:String
-        ,incorrect:List String
+      userAnswer : Maybe String,
+      question : String,
+      correct : String,
+      incorrect : List String
     }

@@ -1,16 +1,16 @@
 module Main exposing (..)
 
-import Html exposing (Html,text)
+import Html exposing (Html,text,div,h1)
 
-import Data.Difficulty exposing (Difficulty,default)
-import Data.Question exposing (Questions)
+import Data.Difficulty exposing (Difficulty)
+import Data.Question exposing (Question)
 import View.Question exposing (view)
 
 
 type alias Model =
     {
         difficulty: Difficulty,
-        questions: List Questions
+        questions: List Question
     }
 toUpperLambda =
     (\str -> String.toUpper str)
@@ -20,18 +20,16 @@ toUpperLambda =
 init: Model
 init =
     Model
-        default
-        [Questions
+        Data.Difficulty.default
+        [Question
+           Nothing
            "question 1"
            "correct Answer 1"
-           []
+           ["false"]
         ]
 
 
 main: Html msg
 
 main=
-   init.questions
-        |> List.map View.Question.view
-        |> String.join ", "
-        |> text
+   div [] (List.map View.Question.view init.questions)
